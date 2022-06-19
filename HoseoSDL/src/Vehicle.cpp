@@ -63,6 +63,22 @@ void Vehicle::seek(Vector2D* target) {
 	applyForce(force);
 }
 
+void Vehicle::arrive(Vector2D* target) {
+	*force = *target - *pos;
+	float dist = force->length();
+
+	if (dist > 0)
+	{
+		float spd = dist / 2;
+		if (spd > maxSpeed) spd = maxSpeed;
+
+		*force /= dist;
+		*force *= spd;
+		*force -= *vel;
+		applyForce(force);
+	}
+}
+
 Vector2D Vehicle::getHidingPosition(Obstacle* obstacle, const Vector2D& hunterPos)
 {
 	Vector2D direction = obstacle->position - hunterPos;

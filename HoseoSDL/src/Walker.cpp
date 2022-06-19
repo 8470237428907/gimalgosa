@@ -18,7 +18,8 @@ Walker::Walker(int x, int y)
 
 void Walker::update() 
 {
-    m_vehicle->seek(Dir);
+    //m_vehicle->seek(Dir);
+    m_vehicle->arrive(Dir);
     m_vehicle->update();
     Dir = TheInputHandler::Instance()->getMousePosition();
 }
